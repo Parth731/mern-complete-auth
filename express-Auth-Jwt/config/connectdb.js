@@ -1,15 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const connectDB = async (DATABASE_URL) => {
-  try {
-    const DB_OPTIONS = {
-      dbName: 'myShop',
-    };
-    await mongoose.connect(DATABASE_URL, DB_OPTIONS);
-    console.log('Connected Successfully...');
-  } catch (error) {
-    console.log(error);
-  }
+const configOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
-export default connectDB;
+const connectToDB = async (DATABASE_URL) => {
+  // const connectionUrl = `mongodb+srv://parthdangroshiya31:5JNDyagEMGRjpEG7@cluster0.9fsm5wt.mongodb.net/nextjs-thirteen-ecommerce`;
+
+  mongoose
+    .connect(DATABASE_URL, configOptions)
+    .then(() => console.log("schooldb database connected successfully!"))
+    .catch((err) =>
+      console.log(`Getting Error from DB connection ${err.message}`)
+    );
+};
+
+export default connectToDB;
